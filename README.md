@@ -14,11 +14,6 @@ Web App Development Year 2 Group lab, group 9E
 ### Milo
 
 ## TODO Urgent:
-- Specification
-    - Wireframes
-    - ER diagram
-    - Site map
-    - Site URLS
 
 ## TODO Future:
 - Code
