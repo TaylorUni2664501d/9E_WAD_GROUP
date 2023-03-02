@@ -23,7 +23,7 @@ class Player(models.Model):
     profile_pic = models.ImageField(upload_to=user_directory_path)
 
     def __str__(self):
-        return self.forename + " " + self.surname
+        return f"{self.forename} {self.surname}"
 
 # helper method to name and organise team logos
 # MUST BE OUTSIDE CLASS - DJANGO SPECIFIC IMPLEMENTATION
@@ -48,6 +48,9 @@ class Team(models.Model):
     logo = models.ImageField(upload_to=logo_directory_path)
     gallery = models.CharField(max_length=200, default=gallery_default) # currently just using a string for the folder path, no better field type exists
 
+    def __str__(self):
+        return f"{self.team_name}"
+
 class Match(models.Model):
     team1_id = models.ForeignKey(Team, on_delete=models.CASCADE, related_name="+") #challenging team
     team2_id = models.ForeignKey(Team, on_delete=models.CASCADE, related_name="+") #challenged team
@@ -65,13 +68,21 @@ class Match(models.Model):
     )
     status = models.CharField(max_length=2, choices=STATUS_CHOICES, default="PN")
 
+    def __str__(self):
+        return f"{self.team1_id} vs {self.team2_id}"
+
 class Team_Players(models.Model): # many-to-many intermediary table
     team_id = models.ForeignKey(Team, on_delete=models.CASCADE)
     player_id = models.ForeignKey(Player, on_delete=models.CASCADE)
     date_joined = models.DateField()
 
+    def __str__(self):
+        return f"{self.team_id} player {self.player_id}"
+
 class Team_Request(models.Model):
     player_id = models.ForeignKey(Player, on_delete=models.CASCADE)
     team_id = models.ForeignKey(Team, on_delete=models.CASCADE) # may not need to be foreign key, unsure as it should reference an id, implementation should work regardless
     date_made = models.DateField()
-    
+
+    def __str__(self):
+        return f"Request {self.player_id} to team {self.team_id}"
