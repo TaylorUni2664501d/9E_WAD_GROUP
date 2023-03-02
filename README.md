@@ -14,10 +14,10 @@ Web App Development Year 2 Group lab, group 9E
 ### Milo
 
 ## TODO Urgent:
-
+Players and Users are one and the same, we are going to need to figure out how Django handles Users and how we will relate that to Players and the Player Model
 ## TODO Future:
 - Code
-    - Models
+    - Models DONE
     - Views
     - Templates/CSS
     - Forms
