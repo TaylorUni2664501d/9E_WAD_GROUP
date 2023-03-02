@@ -36,7 +36,7 @@ class Team(models.Model):
     team_name = models.CharField(max_length=64, unique=True)
     # many-to-many field via Team_Players, allows Team to contain players and hopefully simplify implementation while keeping extra relationship data
     # https://docs.djangoproject.com/en/2.1/ref/models/fields/#manytomanyfield
-    team_players = models.ManyToManyField( 
+    registered_players = models.ManyToManyField( 
         Player,
         through="Team_Players",
         through_fields=("team_id", "player_id")
@@ -46,11 +46,11 @@ class Team(models.Model):
     win_rate = models.FloatField(default=0.0)
     bio = models.TextField(max_length=500)
     logo = models.ImageField(upload_to=logo_directory_path)
-    gallery = models.CharField(default=gallery_default) # currently just using a string for the folder path, no better field type exists
+    gallery = models.CharField(max_length=200, default=gallery_default) # currently just using a string for the folder path, no better field type exists
 
 class Match(models.Model):
-    team1_id = models.ForeignKey(Team, on_delete=models.CASCADE) #challenging team
-    team2_id = models.ForeignKey(Team, on_delete=models.CASCADE) #challenged team
+    team1_id = models.ForeignKey(Team, on_delete=models.CASCADE, related_name="+") #challenging team
+    team2_id = models.ForeignKey(Team, on_delete=models.CASCADE, related_name="+") #challenged team
     date = models.DateField()
     pitch = models.CharField(max_length=64)
     winner = models.IntegerField() # the ID of the winning team - left null at creation, added after match resolution
