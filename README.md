@@ -6,6 +6,7 @@ Web App Development Year 2 Group lab, group 9E
 ### Taylor
 - Forms
 - Database population
+- models: add player name and team name slugs
 ### Ella
 - Views/URLs
     - Context Dict for views
@@ -14,7 +15,7 @@ Web App Development Year 2 Group lab, group 9E
 - User Permission
     - team manager -can manage teams, match and join requests
     - team players -can view the team and upcoming matches
-
+- User Auth/matching to player
 ### Henry
 - Templates/CSS
 ### Milo
@@ -24,8 +25,5 @@ Players and Users are one and the same, we are going to need to figure out how D
 ## TODO Future:
 - Code
     - Models DONE
-    - User Auth/matching to player
-    
-    
 
 - Presentation
