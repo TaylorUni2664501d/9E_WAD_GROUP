@@ -5,6 +5,7 @@ Web App Development Year 2 Group lab, group 9E
 
 ### Taylor
 - Forms
+- Database population
 ### Ella
 - Views/URLs
     - Context Dict for views
@@ -15,18 +16,16 @@ Web App Development Year 2 Group lab, group 9E
     - team players -can view the team and upcoming matches
 
 ### Henry
-
+- Templates/CSS
 ### Milo
-
+- Searching
 ## TODO Urgent:
 Players and Users are one and the same, we are going to need to figure out how Django handles Users and how we will relate that to Players and the Player Model
 ## TODO Future:
 - Code
     - Models DONE
-    
-    - Templates/CSS
     - User Auth/matching to player
-    - Searching
+    
     
 
 - Presentation
