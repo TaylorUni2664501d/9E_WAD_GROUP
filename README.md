@@ -25,5 +25,6 @@ Players and Users are one and the same, we are going to need to figure out how D
 ## TODO Future:
 - Code
     - Models DONE
+    - Unit Testing
 
 - Presentation
