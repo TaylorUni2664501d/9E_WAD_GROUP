@@ -98,3 +98,7 @@ def join_team_request():
 
 @login_required
 def request_match():
+
+@login_required
+def profile(request):
+    return render(request, 'manager/profile.html') # THIS HTML DOESNT EXIST YET

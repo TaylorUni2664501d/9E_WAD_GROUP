@@ -5,6 +5,7 @@ app_name = 'manager'
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('profile/', views.profile, name='profile')
     # path('leaderboard/', views.leaderboard, name='leaderboard'),
     # path('search_teams/', views.search_teams, name="search_teams"),
     # path('search_teams/<slug:team_name>/', views.view_team, name="view_team"),
