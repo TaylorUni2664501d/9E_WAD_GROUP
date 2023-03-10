@@ -16,6 +16,7 @@ from WAD_Code.settings import STATIC_DIR
 def logo_directory_path(instance, filename):
     return f"team_logo/team_{instance.team_name}/{filename}"
 class Team(models.Model):
+    #REDUNDANT METHOD - DO NOT REMOVE IT BREAKS EVERYTHING
     def gallery_default(self): #helper method to make a per-entry default value pointing to the team's gallery folder - ideally should not need changed
         return f"team_gallery/team_{self.team_name}/"
     
@@ -25,7 +26,7 @@ class Team(models.Model):
     win_rate = models.FloatField(default=0.0)
     bio = models.TextField(max_length=500)
     logo = models.ImageField(upload_to=logo_directory_path)
-    gallery = models.CharField(max_length=200, default=gallery_default) # currently just using a string for the folder path, no better field type exists
+    gallery = models.CharField(max_length=200, default=f"team_gallery/team_{team_name}/") # currently just using a string for the folder path, no better field type exists
 
     def __str__(self):
         return f"{self.team_name}"
@@ -44,7 +45,7 @@ class Player(models.Model):
     # image fields allow users to enter an image in the form, and have it automatically uploaded to the correct media directory
     # https://docs.djangoproject.com/en/2.1/ref/models/fields/#imagefield
     profile_pic = models.ImageField(upload_to=user_directory_path, default=f"{STATIC_DIR}/images/default_profile.jpeg")
-    registered_team = models.ForeignKey(Team, on_delete=models.CASCADE)
+    registered_team = models.ForeignKey(Team, on_delete=models.CASCADE, default=0)
 
     def __str__(self):
         return f"{self.forename} {self.surname}"
