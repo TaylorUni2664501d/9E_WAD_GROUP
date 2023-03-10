@@ -99,6 +99,7 @@ def join_team_request():
 
 @login_required
 def request_match():
+    pass
 
 @login_required
 def profile(request):
