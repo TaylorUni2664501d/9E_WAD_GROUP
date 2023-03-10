@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from models import Team
+from manager.models import Team
 from django.contrib.auth import logout, authenticate, login
 from django.urls import reverse
 from django.shortcuts import redirect
@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 
 #POINTS:
 # - I think I've done a requirements file
-# - why won't it import Team!!
+# - why won't it import Team!! - FIXED
 # -  we probs need to have a slug on the teamname and playername properties
 
 def index(request):
