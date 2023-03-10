@@ -95,6 +95,8 @@ def user_logout(request):
 
 @login_required
 def join_team_request():
+    pass
 
 @login_required
 def request_match():
+    pass
