@@ -16,6 +16,14 @@ from django.contrib.auth.decorators import login_required
 def index(request):
     context_dict = {}
 
+    # Could be worth abstracting the logged in, and not logged in index pages to two seperate HTMLs -Stefan
+    if request.user.is_anonymous():
+        # Logic for AnonymousUser (Not logged in)
+        pass
+    else:
+        # Logic for User (Logged In)
+        pass
+
     return render(request, 'manager/index.html', context=context_dict)
 
 def leaderboard(request):
@@ -51,11 +59,24 @@ def signup_team(request):
             profile = team_profile_form(commit=False)
             profile.team = team
 
+            # Hey, sorry to step into your code, Im just making sure when a user makes a team, they automatically get added in -Stefan
+            current_player = Player.Objects.get(username=request.user.username)
+            current_player.registered_team = team
+            # end of added code
+
             if 'logo' in request.FILEs:
                 profile.logo = request.FILES
 
             profile.save()
-            registerd = True
+            registered = True
+
+            # Stefan's User Perms Code, if you fix other stuff pls dont touch :)
+            current_user = request.user
+            # Global Perms
+            current_user.user_permissions.add('is_a_captain')
+            current_user.user_permissions.add('is_a_player')
+            # End of User Perms Code
+
         else:
             print(team_form.errors, team_profile_form.errors)
 
@@ -95,12 +116,26 @@ def user_logout(request):
 
 @login_required
 def join_team_request():
-    pass
+    pass # This will most likely be a form where you input a team name and a password
 
+# To be noted, while is_a_captain is under team, seemingly most documentations on this use the name of the folder the models are in instead
+@permission_required('manager.is_a_captain', raise_exception=True)
 @login_required
 def request_match():
+    # Defining the player linked to the request of the user
+    current_player = Player.objects.get(username=request.user.username)
+    # Defining the team, based on the team name listed in the player's data
+    team = Team.objects.get(team_name=current_player.registered_team)
+    
+    #As the player must be a captain to access this, they logically must be the captain of the team theyre listed under
     pass
 
 @login_required
 def profile(request):
-    return render(request, 'manager/profile.html') # THIS HTML DOESNT EXIST YET
+    return render(request, 'manager/profile.html')
+
+# Custom decorator, checks if user in a team, please check manager/decorators.py for code
+@user_teamless
+@login_required
+def create_team(request):
+    
