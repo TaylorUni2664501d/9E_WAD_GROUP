@@ -1,5 +1,5 @@
 from django import forms
-from manager.models import Team
+from manager.models import Team, Player, Match
 from django.contrib.auth.models import User
 
 #I'm pretty sure there was a forms API demonstrated in the lecture
@@ -12,6 +12,9 @@ class TeamForm(forms.ModelForm):
     pass
 
 class TeamProfileForm(forms.ModelForm):
+    pass
+
+class MatchRequestForm(forms.ModelForm):
     pass
 
 class UserRegisterForm(forms.ModelForm):
