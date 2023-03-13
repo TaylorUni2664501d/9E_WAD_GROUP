@@ -7,3 +7,9 @@ from django.contrib.auth.models import User
 
 # class TeamForm(forms.ModelForm):
 #     password = forms.CharField(widget=)
+
+class TeamForm():
+    pass
+
+class TeamProfileForm():
+    pass
