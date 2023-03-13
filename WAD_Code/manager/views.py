@@ -1,12 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-#change this to manager.models when I push - my computer acts up weirdly
-from manager.models import Team
+from manager.models import Team, Player
 from django.contrib.auth import logout, authenticate, login
 from django.urls import reverse
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required, permission_required
 from decorators import user_teamless
+from forms import TeamForm, TeamProfileForm
 
 # Create your views here.
 
@@ -123,7 +123,7 @@ def join_team_request():
 # To be noted, while is_a_captain is under team, seemingly most documentations on this use the name of the folder the models are in instead
 @permission_required('manager.is_a_captain', raise_exception=True)
 @login_required
-def request_match():
+def request_match(request):
     # Defining the player linked to the request of the user
     current_player = Player.objects.get(username=request.user.username)
     # Defining the team, based on the team name listed in the player's data

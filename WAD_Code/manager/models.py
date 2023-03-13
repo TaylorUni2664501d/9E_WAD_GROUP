@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from WAD_Code.settings import STATIC_DIR
 from django.template.defaultfilters import slugify
 
@@ -48,8 +49,8 @@ def user_directory_path(instance, filename):
     return f"player_profile_pic/user_{instance.id}/{filename}"
 
 class Player(models.Model):
-    forename = models.CharField(max_length=32)
-    surname = models.CharField(max_length=32)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=0)
+    # Forename and Surname gottent from User
     age = models.IntegerField(default=0)
     location = models.CharField(max_length=64)
     bio = models.TextField(max_length=500)
