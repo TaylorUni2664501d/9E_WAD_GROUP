@@ -1,19 +1,138 @@
 <!DOCTYPE html>
-{% load staticfiles %}
-
+    {% load staticfiles %}
 <html>
-    <head>
-        <title>
-            {% block title_block %}
-                Manager app index page
-            {% endblock %}
-        </title>
-    </head>
-    <body>
-        <div>
-            {% block body_block %}
-            {% endblock %}
-        </div>
-    </body>
-</html>
+<head>
 
+<style>
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.title {
+	font-size: 60px;
+    position: fixed;
+    top: 15px;
+    left: 20px;
+    font-weight: bold;
+    z-index: 2;
+}
+
+.topbar {
+  width: 100%;
+  height: 100px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  background-color: white;
+  overflow-x: hidden;
+}
+
+.bottombar {
+  width: 100%;
+  height: 100px;
+  position: fixed;
+  z-index: 1;
+  bottom: 0;
+  background-color: white;
+  overflow-x: hidden;
+}
+
+.bottomButtons {
+  
+  padding: 2rem 2rem;
+  text-align: center;
+  position: fixed;
+  left: -10px;
+  bottom: -20px;
+  z-index: 2;
+  
+}
+
+.bottomButton {
+  display: inline-block;
+  border: 2px solid #009900;
+  padding: 1rem 1rem;
+  margin-right: 2rem;
+  vertical-align middle;
+  font-size: 40px;
+  background-color: #99ff33;
+  
+}
+
+
+
+.topButtons {
+  
+  padding: 2rem 2rem;
+  text-align: center;
+  position: fixed;
+  right: -50px;
+  top: -20px;
+  z-index: 2;
+  
+}
+
+.topButton {
+  display: inline-block;
+  border: 2px solid #3333cc;
+  padding: 1rem 1rem;
+  margin-right: 2rem;
+  vertical-align middle;
+  font-size: 40px;
+  background-color: #99ccff;
+  
+}
+
+
+
+.copyright {
+  position: fixed;
+  bottom: 3%;
+  right: 2%;
+}
+
+.main {
+  
+  margin-top: 8%;
+  font-size: 28px;
+  padding: 0px 10px;
+  margin-bottom: 10%;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+</style>
+</head>
+<body>
+
+<div class="bottomButtons">
+	<div class="bottomButton"><a href="faq/" style="color: black; text-decoration: none;">FAQ</a></div>
+    <div class="bottomButton"><a href="contact/" style="color: black; text-decoration: none;">Contact Us</a></div>
+</div>
+
+<div class="topButtons">
+	<div class="topButton"><a href="login/" style="color: black; text-decoration: none;">Login</a></div>
+    <div class="topButton"><a href="signup/individual/" style="color: black; text-decoration: none;">Sign up Individual</a></div>
+    <div class="topButton"><a href="signup/team/" style="color: black; text-decoration: none;">Sign up Team</a></div>
+</div>
+
+<div class="topbar"></div>
+<div class="bottombar"></div>
+
+<div class="title">
+    {% block title_block %}
+    <title> PickUp - {block title_block %}</title>
+    {% endblock %}
+</div>
+
+<div class="copyright">2023 PickUp Football Inc. all rights reserved</div>
+
+<div class="main">
+    {% block body_block %}
+    {% endblock %}
+</div>
+   
+</body>
+</html> 

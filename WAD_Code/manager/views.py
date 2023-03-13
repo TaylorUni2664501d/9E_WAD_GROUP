@@ -15,11 +15,14 @@ from django.contrib.auth.decorators import login_required
 
 def index(request):
     context_dict = {}
+    top_teams = Team.objects.order_by('-win_rate')[:5]
+    context_dict['teams'] = top_teams
+    
 
     return render(request, 'manager/index.html', context=context_dict)
 
 def leaderboard(request):
-    team_list = Team.objects.order_by('win_rate')
+    team_list = Team.objects.order_by('-win_rate')
     context_dict = {}
     context_dict['teams'] = team_list
     return render(request, 'manager/leaderboard.html', context=context_dict)
@@ -62,7 +65,7 @@ def signup_team(request):
     else:
         team_form = TeamForm()
         team_profile_form = TeamProfileForm()
-    return render(request, 'manager/register_team.htm', context={"team_form":team_form, "team_profile": team_profile_form, "registered": registered})
+    return render(request, 'manager/register_team.html', context={"team_form":team_form, "team_profile": team_profile_form, "registered": registered})
 
 #both individual players and teams can login the same way i assume
 #with just a username and password

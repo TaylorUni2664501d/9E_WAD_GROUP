@@ -2,9 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Leaderboard</title>
 </head>
 <body>
 
 </body>
 </html>
+
+{% extends 'manager/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Leaderboard
+{% endblock %}
+
+{% block body_block %}
+    {% if teams %}
+    <ol>
+        {% for team in teams %}
+        <li>{{ team.team_name }} - {{ team.win_rate }}</li>
+        {% endfor %}
+    </ol>
+    {% endif %}
+    <h1> <a href="{% url 'manager:index' %}">Back</a> to homepage</h1>
+    
+{% endblock %}
