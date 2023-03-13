@@ -1,5 +1,5 @@
 from django import forms
-from models import Team
+from manager.models import Team
 from django.contrib.auth.models import User
 
 #I'm pretty sure there was a forms API demonstrated in the lecture

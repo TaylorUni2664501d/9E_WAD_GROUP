@@ -5,8 +5,8 @@ from django.contrib.auth import logout, authenticate, login
 from django.urls import reverse
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required, permission_required
-from decorators import user_teamless
-from forms import TeamForm, TeamProfileForm
+from manager.decorators import user_teamless
+from manager.forms import TeamForm, TeamProfileForm
 
 # Create your views here.
 
