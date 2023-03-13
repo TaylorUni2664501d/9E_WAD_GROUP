@@ -17,11 +17,18 @@ class TeamProfileForm(forms.ModelForm):
 class MatchRequestForm(forms.ModelForm):
     pass
 
-class UserRegisterForm(forms.ModelForm):
-    pass
+class UserForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput())
+
+    class Meta:
+        model = User
+        fields = ("username","email","password",)
 
 class PlayerForm(forms.ModelForm):
-    pass
+    class Meta:
+        model = Player
+        fields = ("age","location","bio","profile_pic")
+        exclude = ("registered_team")
 
 class LoginForm(forms.ModelForm):
     pass
