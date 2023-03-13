@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from manager.models import Team
+#change this to manager.models when I push - my computer acts up weirdly
+from models import Team
 from django.contrib.auth import logout, authenticate, login
 from django.urls import reverse
 from django.shortcuts import redirect
