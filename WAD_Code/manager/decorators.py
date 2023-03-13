@@ -9,13 +9,12 @@ def teamless_test_function(user):
     return True
     
     
-def user_teamless():
-    def decorator(view):
-        @wraps(view)
-        def _wrapped_view(request, *args, **kwargs):
-            if not teamless_test_function(request.user):
-                messages.error(request, "You're already in a team!")
-                return redirect("manager/view_team.html")
-            return view(request, *args, **kwargs)
-        return _wrapped_view
-    return decorator
+def user_teamless(func):
+    @wraps(func)
+    def _wrapped_view(request, *args, **kwargs):
+        if not teamless_test_function(request.user):
+            messages.error(request, "You're already in a team!")
+            return redirect("manager/view_team.html")
+        return func(request, *args, **kwargs)
+    return _wrapped_view
+    
