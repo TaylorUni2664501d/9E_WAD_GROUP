@@ -138,4 +138,4 @@ def profile(request):
 @user_teamless
 @login_required
 def create_team(request):
-    
+    pass
