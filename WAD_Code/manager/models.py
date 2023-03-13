@@ -30,6 +30,7 @@ class Team(models.Model):
     gallery = models.CharField(max_length=200, default=f"team_gallery/team_{team_name}/") # currently just using a string for the folder path, no better field type exists
     slug = models.SlugField(unique=True)
 
+    #this is the code that shld implement the slugs
     def save(self, *args, **kwargs):
         self.slug = slugify(self.team_name)
         super(Team, self).save(*args, **kwargs)
