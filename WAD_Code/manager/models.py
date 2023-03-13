@@ -49,7 +49,7 @@ def user_directory_path(instance, filename):
     return f"player_profile_pic/user_{instance.id}/{filename}"
 
 class Player(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=0)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, default=0)
     # Forename and Surname gottent from User
     age = models.IntegerField(default=0)
     location = models.CharField(max_length=64)
