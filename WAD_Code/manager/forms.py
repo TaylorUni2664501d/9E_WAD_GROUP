@@ -13,3 +13,15 @@ class TeamForm():
 
 class TeamProfileForm():
     pass
+
+class UserRegisterForm():
+    pass
+
+class PlayerForm():
+    pass
+
+class LoginForm():
+    pass
+
+class LogoutForm():
+    pass
