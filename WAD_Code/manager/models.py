@@ -1,5 +1,5 @@
 from django.db import models
-from WAD_Code.WAD_Code.settings import STATIC_DIR
+from WAD_Code.settings import STATIC_DIR
 from django.template.defaultfilters import slugify
 
 # Create your models here.
