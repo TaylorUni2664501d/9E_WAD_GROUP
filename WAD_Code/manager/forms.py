@@ -8,20 +8,20 @@ from django.contrib.auth.models import User
 # class TeamForm(forms.ModelForm):
 #     password = forms.CharField(widget=)
 
-class TeamForm():
+class TeamForm(forms.ModelForm):
     pass
 
-class TeamProfileForm():
+class TeamProfileForm(forms.ModelForm):
     pass
 
-class UserRegisterForm():
+class UserRegisterForm(forms.ModelForm):
     pass
 
-class PlayerForm():
+class PlayerForm(forms.ModelForm):
     pass
 
-class LoginForm():
+class LoginForm(forms.ModelForm):
     pass
 
-class LogoutForm():
+class LogoutForm(forms.ModelForm):
     pass
