@@ -19,7 +19,7 @@ class Team(models.Model):
     #REDUNDANT METHOD - DO NOT REMOVE IT BREAKS EVERYTHING
     def gallery_default(self): #helper method to make a per-entry default value pointing to the team's gallery folder - ideally should not need changed
         return f"team_gallery/team_{self.team_name}/"
-    
+
     team_name = models.CharField(max_length=64, unique=True)
     location = models.CharField(max_length=64)
     age_range = models.CharField(max_length=5)
@@ -30,7 +30,11 @@ class Team(models.Model):
 
     def __str__(self):
         return f"{self.team_name}"
-    
+
+    #Permissions code for teams
+    class Meta:
+        permissions = (("is_a_captain", "Standard Captain Permissions"), ("is_a_player", "Standard Player Permissions"),)
+
 # helper method to name and organise user profile pictures
 # MUST BE OUTSIDE CLASS - DJANGO SPECIFIC IMPLEMENTATION
 def user_directory_path(instance, filename):
