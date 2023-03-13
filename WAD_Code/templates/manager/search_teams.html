@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+{% extends 'manager/base.html' %}
+{% load staticfiles %}
+	{% block title_block %}
+		Search for a team
+	{% endblock %}
+	
+	{% block body_block %}
+		<form id = "search_form">
+		   <input type = "search" id = "query" name = "q" 
+	    	placeholder = "Search teams..." >
+		    <button>Search</button>
+		</form>
+	{% endblock %}
