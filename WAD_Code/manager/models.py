@@ -31,7 +31,6 @@ class Team(models.Model):
     gallery = models.CharField(max_length=200, default=f"team_gallery/team_{team_name}/") # currently just using a string for the folder path, no better field type exists
     slug = models.SlugField(unique=True)
 
-
     def save(self, *args, **kwargs):
         self.slug = slugify(self.team_name)
         super(Team, self).save(*args, **kwargs)
@@ -49,14 +48,14 @@ def user_directory_path(instance, filename):
     return f"player_profile_pic/user_{instance.id}/{filename}"
 
 class Player(models.Model):
-    forename = models.CharField(max_length=32)
-    surname = models.CharField(max_length=32)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, default=0)
+    # Forename and Surname gottent from User
     age = models.IntegerField(default=0)
     location = models.CharField(max_length=64)
     bio = models.TextField(max_length=500)
     # image fields allow users to enter an image in the form, and have it automatically uploaded to the correct media directory
     # https://docs.djangoproject.com/en/2.1/ref/models/fields/#imagefield
-    profile_pic = models.ImageField(upload_to=user_directory_path, default=f"{STATIC_DIR}/images/default_profile.jpeg")
+    profile_pic = models.ImageField(upload_to=user_directory_path, default=f"images/default_profile.jpeg")
     registered_team = models.ForeignKey(Team, on_delete=models.CASCADE, default=0)
 
     def __str__(self):
