@@ -1,0 +1,80 @@
+urls.py
+
+# path('search_results/', views.search_results, name="search_results"),
+
+
+
+
+views.py
+
+def search_team(request):
+    if request.method == 'POST':
+		team_name = request.POST.get('team name')
+    context_dict = {}
+    context_dict['teams'] = search_list
+    return render(request, 'manager/search_teams.html', context = context_dict)
+#should render a page with search box, wait for input and pass 
+#the search term to search_results
+
+def seach_results(request, search):
+    team_list = Team.objects.order_by('team_name')
+    search_list = {}
+    for team in team_list
+        if (search in team.team_name)
+            search_list.append(team)
+    context_dict['teams'] = search_list
+	context_dict['search'] = search
+    return render(request, 'manager/search_results.html', context = context_dict)
+#recieves a search term from search_team and provides a
+#list of teams that match that term
+
+
+search_results.html
+
+<!DOCTYPE html>
+{% extends 'manager/base.html' %}
+{% load staticfiles %}
+	{% block title_block %}
+		{% if search %}
+			{{ search }}
+		{% else %}
+			No Search
+		{% endif %}
+	{% endblock %}
+
+	{% block body_block %}
+		{% if teams %}
+		<ul>
+			{% for team in teams %}
+				<li><a href="{% url 'manager:view_team' team.slug %}">{{ team.team_name }}</a></li>
+			{% endfor %}
+		</ul>
+		{% else %}
+		<strong>No teams matched the search.</strong>
+		{% endif %}
+	{% endblock %}
+
+search_teams.html
+
+<!DOCTYPE html>
+{% extends 'manager/base.html' %}
+{% load staticfiles %}
+	{% block title_block %}
+		{% if search %}
+			{{ search }}
+		{% else %}
+			No Search
+		{% endif %}
+	{% endblock %}
+
+	{% block body_block %}
+		{% if teams %}
+		<ul>
+			{% for team in teams %}
+				<li><a href="{% url 'manager:view_team' team.slug %}">{{ team.team_name }}</a></li>
+			{% endfor %}
+		</ul>
+		{% else %}
+		<strong>No teams matched the search.</strong>
+		{% endif %}
+	{% endblock %}
