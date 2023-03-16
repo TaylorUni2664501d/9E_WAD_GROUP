@@ -65,8 +65,8 @@ def signup_team(request):
             # profile.team = team
 
             # Hey, sorry to step into your code, Im just making sure when a user makes a team, they automatically get added in -Stefan
-            current_player = Player.objects.get(username=request.user.username)
-            current_player.registered_team = team
+            # current_player = Player.objects.get(username=request.user.username) - COMMENTED TO AVOID ERRORS UNTIL IMPLEMENTATION FIXED
+            # current_player.registered_team = team 
             # end of added code
 
             if 'logo' in request.FILEs:
