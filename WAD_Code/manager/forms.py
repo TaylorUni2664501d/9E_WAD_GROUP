@@ -9,7 +9,16 @@ from django.contrib.auth.models import User
 #     password = forms.CharField(widget=)
 
 class TeamForm(forms.ModelForm):
-    pass
+    # team_name = forms.CharField()
+    # location = forms.CharField()
+    # age_range = forms.IntegerField(widget=forms.NumberInput())
+    # bio = forms.CharField(widget=forms.Textarea())
+    # logo = forms.ImageField()
+
+    class Meta:
+        model = Team
+        fields = ("team_name","location","age_range","bio","logo")
+        exclude = ("win_rate","gallery",)
 
 class TeamProfileForm(forms.ModelForm):
     pass
