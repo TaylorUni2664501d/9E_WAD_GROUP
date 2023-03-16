@@ -59,7 +59,7 @@ def signup_team(request):
         if team_form.is_valid() and team_form.is_valid():
             #team = team_form.save
             #team.set_password(team.password)
-            team_form.save()
+            team = team_form.save()
 
             # profile = team_profile_form(commit=False)
             # profile.team = team
