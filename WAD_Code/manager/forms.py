@@ -11,15 +11,24 @@ from django.contrib.auth.models import User
 class TeamForm(forms.ModelForm):
     # team_name = forms.CharField()
     # location = forms.CharField()
-    # age_range = forms.IntegerField(widget=forms.NumberInput())
+    # age_range = forms.IntegerField(widget=forms.NumberInput()) - FIX NUMBER INPUT - TWO NUM INPUTS MIN-MAX
+    age_min = forms.IntegerField(widget=forms.NumberInput(), min_value=13, max_value=50)
+    age_max = forms.IntegerField(widget=forms.NumberInput(), min_value=13, max_value=50)
     # bio = forms.CharField(widget=forms.Textarea())
 
     logo = forms.ImageField(required=False)
     
+    def save(self, commit=True):
+        instance = super(TeamForm, self).save(commit=False)
+        instance.age_range = f"{self.data['age_min']}-{self.data['age_max']}"
+        if commit:
+            instance.save()
+        return instance
+
     class Meta:
         model = Team
         fields = ("team_name","location","age_range","bio")
-        exclude = ("win_rate","gallery",)
+        exclude = ("win_rate","gallery","age_range",)
 
 class TeamProfileForm(forms.ModelForm):
     pass
