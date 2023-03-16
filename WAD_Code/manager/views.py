@@ -54,18 +54,18 @@ def signup_team(request):
 
     if request.method == 'POST':
         team_form = TeamForm(request.POST)
-        team_profile_form = TeamProfileForm(request.POST)
+        # team_profile_form = TeamProfileForm(request.POST)
 
         if team_form.is_valid() and team_form.is_valid():
-            team = team_form.save
-            team.set_password(team.password)
-            team.save()
+            #team = team_form.save
+            #team.set_password(team.password)
+            team_form.save()
 
-            profile = team_profile_form(commit=False)
-            profile.team = team
+            # profile = team_profile_form(commit=False)
+            # profile.team = team
 
             # Hey, sorry to step into your code, Im just making sure when a user makes a team, they automatically get added in -Stefan
-            current_player = Player.Objects.get(username=request.user.username)
+            current_player = Player.objects.get(username=request.user.username)
             current_player.registered_team = team
             # end of added code
 
@@ -83,12 +83,12 @@ def signup_team(request):
             # End of User Perms Code
 
         else:
-            print(team_form.errors, team_profile_form.errors)
+            print(team_form.errors)
 
     else:
         team_form = TeamForm()
-        team_profile_form = TeamProfileForm()
-    return render(request, 'manager/register_team.html', context={"team_form":team_form, "team_profile": team_profile_form, "registered": registered})
+        # team_profile_form = TeamProfileForm()
+    return render(request, 'manager/register_team.html', context={"team_form":team_form, "registered": registered})
 
 #both individual players and teams can login the same way i assume
 #with just a username and password
