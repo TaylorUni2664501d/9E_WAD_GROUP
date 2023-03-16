@@ -56,7 +56,7 @@ class Player(models.Model):
     bio = models.TextField(max_length=500)
     # image fields allow users to enter an image in the form, and have it automatically uploaded to the correct media directory
     # https://docs.djangoproject.com/en/2.1/ref/models/fields/#imagefield
-    profile_pic = models.ImageField(upload_to=user_directory_path, default=f"{STATIC_DIR}/images/default_profile.jpeg")
+    profile_pic = models.ImageField(upload_to=user_directory_path, default=f"images/default_profile.jpeg")
     registered_team = models.ForeignKey(Team, on_delete=models.CASCADE, default=0)
 
     def __str__(self):
