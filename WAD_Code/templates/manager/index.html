@@ -18,7 +18,7 @@
     <h2>Current top teams</h2>
     <ol>
        {% for team in teams %}
-        <li>{{ team.team_name }} - {{ team.win_rate }}</li>
+        <li><a href="/manager/search_teams/" style="color: black; text-decoration: none;"> {{ team.team_name }}</a> - {{ team.win_rate }}</li>
         {% endfor %}
         {% endif %} 
     </ol>
