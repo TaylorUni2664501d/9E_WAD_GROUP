@@ -27,8 +27,8 @@ class UserForm(forms.ModelForm):
 class PlayerForm(forms.ModelForm):
     class Meta:
         model = Player
-        fields = ("age","location","bio","profile_pic")
-        exclude = ("registered_team")
+        fields = ("age","location","bio","profile_pic",)
+        exclude = ("registered_team",)
 
 class LoginForm(forms.ModelForm):
     pass
