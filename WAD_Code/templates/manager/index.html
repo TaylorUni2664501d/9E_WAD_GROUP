@@ -2,11 +2,25 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    Index
+    PickUp Football
 {% endblock %}
 
 {% block body_block %}
+    
+    <ul>
+        <li>Click <a href="/manager/search_teams/">Here</a> to search for teams to play against or join</li>
+        <li>Click <a href="/manager/leaderboard/">Here</a> to view the leaderboard</li>
+    </ul>
     <img src="{% static 'images/test.jpg' %}" alt="A temporary logo for testing" />
     <br/>
     Manager app index page
+    {% if teams %}
+    <h2>Current top teams</h2>
+    <ol>
+       {% for team in teams %}
+        <li><a href="/manager/search_teams/" style="color: black; text-decoration: none;"> {{ team.team_name }}</a> - {{ team.win_rate }}</li>
+        {% endfor %}
+        {% endif %} 
+    </ol>
+    
 {% endblock %}

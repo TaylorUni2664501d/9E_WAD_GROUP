@@ -1,10 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'manager/base.html' %}
+{% load staticfiles %}
 
-</body>
-</html>
+{% block title_block %}
+    {{ team.team_name }}
+{% endblock %}
+
+{% block body_block %}
+    
+
+    <img src="{% static 'images/test.jpg' %}" alt="A temporary logo for testing" />
+    <br/>
+    
+    {% if team %}
+    <h2>{{ team.team_name }}</h2>
+    
+    
+{% endblock %}
