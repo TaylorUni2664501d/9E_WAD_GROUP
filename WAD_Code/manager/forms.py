@@ -13,11 +13,19 @@ class TeamForm(forms.ModelForm):
     # location = forms.CharField()
     # age_range = forms.IntegerField(widget=forms.NumberInput())
     # bio = forms.CharField(widget=forms.Textarea())
-    # logo = forms.ImageField()
+
+    logo = forms.ImageField(required=False)
+
+    class Meta:
+        model = Team
+        fields = ("team_name","location","age_range","bio")
+
+
 
     class Meta:
         model = Team
         fields = ("team_name","location","age_range","bio","logo")
+
         exclude = ("win_rate","gallery",)
 
 class TeamProfileForm(forms.ModelForm):
