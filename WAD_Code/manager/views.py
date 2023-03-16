@@ -17,19 +17,22 @@ from manager.forms import TeamForm, TeamProfileForm
 
 def index(request):
     context_dict = {}
+    top_teams = Team.objects.order_by('-win_rate')[:5]
+    context_dict['teams'] = top_teams
+    
 
     # Could be worth abstracting the logged in, and not logged in index pages to two seperate HTMLs -Stefan
-    if request.user.is_anonymous():
+    #if request.user.is_anonymous():
         # Logic for AnonymousUser (Not logged in)
-        pass
-    else:
+        #pass
+    #else:
         # Logic for User (Logged In)
-        pass
+        #pass
 
     return render(request, 'manager/index.html', context=context_dict)
 
 def leaderboard(request):
-    team_list = Team.objects.order_by('win_rate')
+    team_list = Team.objects.order_by('-win_rate')
     context_dict = {}
     context_dict['teams'] = team_list
     return render(request, 'manager/leaderboard.html', context=context_dict)
@@ -38,8 +41,8 @@ def view_team(request, team_name):
     context_dict = {}
 
     try:
-        team = Team.objects.get(team_name = team_name)
-        # context_dict['team'] = team
+        team = Team.objects.get(team_name)
+        context_dict['team'] = team
     except Team.DoesNotExist:
         context_dict['team'] = None
 
@@ -85,7 +88,7 @@ def signup_team(request):
     else:
         team_form = TeamForm()
         team_profile_form = TeamProfileForm()
-    return render(request, 'manager/register_team.htm', context={"team_form":team_form, "team_profile": team_profile_form, "registered": registered})
+    return render(request, 'manager/register_team.html', context={"team_form":team_form, "team_profile": team_profile_form, "registered": registered})
 
 #both individual players and teams can login the same way i assume
 #with just a username and password
@@ -121,7 +124,7 @@ def join_team_request():
     pass # This will most likely be a form where you input a team name and a password
 
 # To be noted, while is_a_captain is under team, seemingly most documentations on this use the name of the folder the models are in instead
-@permission_required('manager.is_a_captain', raise_exception=True)
+#@permission_required('manager.is_a_captain', raise_exception=True)
 @login_required
 def request_match(request):
     # Defining the player linked to the request of the user
@@ -136,8 +139,17 @@ def request_match(request):
 def profile(request):
     return render(request, 'manager/profile.html')
 
+def faq(request):
+    return render(request, 'manager/faq.html')
+
+def contact_us(request):
+    return render(request, 'manager/contact.html')
+
+
 # Custom decorator, checks if user in a team, please check manager/decorators.py for code
+
 @user_teamless
 @login_required
 def create_team(request):
     pass
+
