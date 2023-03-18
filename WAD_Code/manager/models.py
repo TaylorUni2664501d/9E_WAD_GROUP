@@ -27,12 +27,12 @@ class Team(models.Model):
     age_range = models.CharField(max_length=5)
     win_rate = models.FloatField(default=0.0)
     bio = models.TextField(max_length=500)
-    logo = models.ImageField(upload_to=logo_directory_path)
+    logo = models.ImageField(upload_to=f"team_logo/") # TODO: Fix logo upload
     gallery = models.CharField(max_length=200, default=f"team_gallery/team_{team_name}/") # currently just using a string for the folder path, no better field type exists
-    # slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True, default="error")
 
     def save(self, *args, **kwargs):
-         #self.slug = slugify(self.team_name)
+        self.slug = slugify(self.team_name)
         super(Team, self).save(*args, **kwargs)
 
     def __str__(self):

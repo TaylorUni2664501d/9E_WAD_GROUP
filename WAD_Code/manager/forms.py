@@ -28,7 +28,7 @@ class TeamForm(forms.ModelForm):
     class Meta:
         model = Team
         fields = ("team_name","location","age_range","bio")
-        exclude = ("win_rate","gallery","age_range",)
+        exclude = ("win_rate","gallery","age_range","slug",)
 
 class TeamProfileForm(forms.ModelForm):
     pass

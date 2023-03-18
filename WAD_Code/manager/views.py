@@ -69,17 +69,17 @@ def signup_team(request):
             # current_player.registered_team = team 
             # end of added code
 
-            if 'logo' in request.FILEs:
-                profile.logo = request.FILES
+            #if 'logo' in request.FILEs: - BROKEN
+            #    profile.logo = request.FILES
 
-            profile.save()
+            #profile.save()
             registered = True
 
             # Stefan's User Perms Code, if you fix other stuff pls dont touch :)
             current_user = request.user
             # Global Perms
-            current_user.user_permissions.add('is_a_captain')
-            current_user.user_permissions.add('is_a_player')
+            #current_user.user_permissions.add('is_a_captain')
+            #current_user.user_permissions.add('is_a_player')
             # End of User Perms Code
 
         else:
