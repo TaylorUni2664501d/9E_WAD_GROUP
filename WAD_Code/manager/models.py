@@ -79,7 +79,7 @@ class Match(models.Model):
     status = models.CharField(max_length=2, choices=STATUS_CHOICES, default="PN")
 
     def __str__(self):
-        return f"{self.team1_id} vs {self.team2_id}"
+        return f"{self.team1_id} vs {self.team2_id} at {self.date}"
 
 class Team_Request(models.Model):
     player_id = models.ForeignKey(Player, on_delete=models.CASCADE)
