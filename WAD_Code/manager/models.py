@@ -66,8 +66,8 @@ class Match(models.Model):
     team2 = models.ForeignKey(Team, on_delete=models.CASCADE, related_name="+") #challenged team
     date = models.DateField()
     pitch = models.CharField(max_length=64)
-    winner = models.IntegerField(blank=True) # the ID of the winning team - left null at creation, added after match resolution
-    loser = models.IntegerField(blank=True)
+    winner = models.IntegerField(blank=True, default="-") # the ID of the winning team - left null at creation, added after match resolution
+    loser = models.IntegerField(blank=True, default="-")
     # defined status, forcing field to only contain set options, preventing input-based errors
     # https://docs.djangoproject.com/en/2.1/ref/models/fields/#choices
     STATUS_CHOICES = (
