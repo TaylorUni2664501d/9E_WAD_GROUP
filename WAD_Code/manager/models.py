@@ -49,7 +49,7 @@ def user_directory_path(instance, filename):
 
 class Player(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, default=0)
-    # Forename and Surname gottent from User
+    # Forename and Surname gotten from User
     age = models.IntegerField(default=0)
     location = models.CharField(max_length=64)
     bio = models.TextField(max_length=500)
@@ -59,11 +59,11 @@ class Player(models.Model):
     registered_team = models.ForeignKey(Team, on_delete=models.CASCADE, default=0)
 
     def __str__(self):
-        return f"{self.forename} {self.surname}"
+        return f"{self.user.first_name} {self.user.last_name}"
 
 class Match(models.Model):
-    team1_id = models.ForeignKey(Team, on_delete=models.CASCADE, related_name="+") #challenging team
-    team2_id = models.ForeignKey(Team, on_delete=models.CASCADE, related_name="+") #challenged team
+    team1 = models.ForeignKey(Team, on_delete=models.CASCADE, related_name="+") #challenging team
+    team2 = models.ForeignKey(Team, on_delete=models.CASCADE, related_name="+") #challenged team
     date = models.DateField()
     pitch = models.CharField(max_length=64)
     winner = models.IntegerField() # the ID of the winning team - left null at creation, added after match resolution
