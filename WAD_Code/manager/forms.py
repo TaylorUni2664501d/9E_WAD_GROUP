@@ -51,12 +51,13 @@ class MatchRequestForm(forms.ModelForm): # form to create a new Match Request
 class TeamRequestForm(forms.ModelForm): 
     pass
 
-class UserForm(forms.ModelForm): # form to create a new user
+class UserForm(forms.Form): # form to create a new user - NOT MODEL FORM, DATA MUST BE PROCESSED IN VIEW
+    username = forms.CharField(max_length=64)
     password = forms.CharField(widget=forms.PasswordInput())
-
-    class Meta:
-        model = User
-        fields = ("username","email","password",)
+    email = forms.EmailField()
+    age = forms.IntegerField(max_value=60, min_value=13)
+    location = forms.CharField(max_length=64)
+    bio = forms.Textarea()
 
 class PlayerForm(forms.ModelForm): # form to create a new player
     class Meta:
