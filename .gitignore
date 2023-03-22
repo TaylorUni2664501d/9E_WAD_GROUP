@@ -127,3 +127,8 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+population_maker.py
+
+WAD_Code/manager/test.py
+WAD_Code/test.py
