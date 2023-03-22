@@ -33,7 +33,6 @@ def populate():
         print(f"selected {selection_range} players")
         for i in range(selection_range): #select players to be in the team and removes them from the selection pool
             select = random.choice(players)
-            print(select)
             if select not in player_choices:
                 player_choices.append(select)
                 players.remove(select)
