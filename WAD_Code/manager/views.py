@@ -122,6 +122,10 @@ def user_logout(request):
 @login_required
 def join_team_request():
     pass # This will most likely be a form where you input a team name and a password
+        # - all nessecary information should be accessible from the site 
+        # - requesting user/player from login
+        # - requested team by team site/slug/context dict
+        # - date from system clock
 
 # To be noted, while is_a_captain is under team, seemingly most documentations on this use the name of the folder the models are in instead
 #@permission_required('manager.is_a_captain', raise_exception=True)
