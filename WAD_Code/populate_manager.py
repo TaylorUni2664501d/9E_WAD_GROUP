@@ -92,7 +92,7 @@ def add_user(forename, surname, age):
     return u
 
 def add_team(name,location,age_range,win_rate,bio):
-    t = Team.objects.get_or_create(team_name = name)[0]
+    t = Team.objects.get_or_create(team_name = name, team_password=f"{name}Password")[0]
     t.location = location
     t.age_range = age_range
     t.win_rate = win_rate

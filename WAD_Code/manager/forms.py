@@ -8,8 +8,9 @@ from django.contrib.auth.models import User
 # class TeamForm(forms.ModelForm):
 #     password = forms.CharField(widget=)
 
-class TeamForm(forms.ModelForm):
+class TeamForm(forms.ModelForm): # form to create a new team
     # team_name = forms.CharField()
+    team_password = forms.CharField(widget=forms.PasswordInput())
     # location = forms.CharField()
     # age_range = forms.IntegerField(widget=forms.NumberInput())
     age_min = forms.IntegerField(widget=forms.NumberInput(), min_value=13, max_value=50)
@@ -27,13 +28,13 @@ class TeamForm(forms.ModelForm):
 
     class Meta:
         model = Team
-        fields = ("team_name","location","age_range","bio")
+        fields = ("team_name","team_password", "location","age_range","bio")
         exclude = ("win_rate","gallery","age_range","slug",)
 
-class TeamProfileForm(forms.ModelForm):
+class TeamProfileForm(forms.ModelForm): # form to log in to a team as admin
     pass
 
-class MatchRequestForm(forms.ModelForm):
+class MatchRequestForm(forms.ModelForm): # form to create a new Match Request
     team_choices = ((team, str(team)) for team in Team.objects.all())
     team2 = forms.ChoiceField(choices=team_choices)
 
@@ -47,24 +48,27 @@ class MatchRequestForm(forms.ModelForm):
         fields = ("team2", "date", "pitch") #should be within team 1's page, team1 gotten from there
         exclude = ("winner", "loser", "status")
 
-class UserForm(forms.ModelForm):
+class TeamRequestForm(forms.ModelForm): 
+    pass
+
+class UserForm(forms.ModelForm): # form to create a new user
     password = forms.CharField(widget=forms.PasswordInput())
 
     class Meta:
         model = User
         fields = ("username","email","password",)
 
-class PlayerForm(forms.ModelForm):
+class PlayerForm(forms.ModelForm): # form to create a new player
     class Meta:
         model = Player
         fields = ("age","location","bio","profile_pic",)
         exclude = ("registered_team","user")
 
-class LoginForm(forms.ModelForm):
+class LoginForm(forms.ModelForm): # form to log in a user
     password = forms.CharField(widget=forms.PasswordInput())
     class Meta:
         model = User
-        fields = ("username", "email", "password",)
+        fields = ("username", "password",)
 
 class LogoutForm(forms.ModelForm):
     pass

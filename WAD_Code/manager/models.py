@@ -23,6 +23,7 @@ class Team(models.Model):
         return f"team_gallery/team_{self.team_name}/"
 
     team_name = models.CharField(max_length=64, unique=True)
+    team_password = models.CharField(max_length=32, default="defaultPassword")
     location = models.CharField(max_length=64)
     age_range = models.CharField(max_length=5)
     win_rate = models.FloatField(default=0.0)
