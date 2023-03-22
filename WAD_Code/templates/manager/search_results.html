@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% extends 'manager/base.html' %}
+{% load staticfiles %}
+	{% block title_block %}
+		{% if search %}
+			{{ search }}
+		{% else %}
+			No Search
+		{% endif %}
+	{% endblock %}
+
+	{% block body_block %}
+		{% if teams %}
+		<ul>
+			{% for team in teams %}
+				<li><a href="{% url 'manager:view_team' team.slug %}">{{ team.team_name }}</a></li>
+			{% endfor %}
+		</ul>
+		{% else %}
+		<strong>No teams matched the search.</strong>
+		{% endif %}
+	{% endblock %}
