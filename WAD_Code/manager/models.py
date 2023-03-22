@@ -34,6 +34,7 @@ class Team(models.Model):
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.team_name)
+        self.team_password = hash(self.team_password) # save the hash of the password - not plaintext
         super(Team, self).save(*args, **kwargs)
 
     def __str__(self):
