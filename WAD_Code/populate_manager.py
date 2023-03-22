@@ -9,8 +9,7 @@ from manager.models import Player, Team, Match, Team_Request
 from django.contrib.auth.models import User
 
 def populate():
-    locations = ["Glasgow", "Stirling", "Edinburgh", "Cumbernauld", "Alloa", "Falkirk", "Queensferry", "Livingston", "Perth", "Kirkcaldy", "St Andrews", "Cupar",
-                 "Glenrothes", "Dundee", "Lanark", "Douglas", "Selkirk", "Jedburgh", "Haddington", "Dunfermline", "Ayr", "Aberdeen", "Durham", "Lockerbie", "Carlisle"]
+    locations = ["Glasgow", "Stirling", "Edinburgh", "Cumbernauld", "Alloa", "Falkirk", "Queensferry", "Livingston", "Perth", "Kirkcaldy", "St Andrews", "Cupar", "Glenrothes", "Dundee", "Lanark", "Douglas", "Selkirk", "Jedburgh", "Haddington", "Dunfermline", "Ayr", "Aberdeen", "Durham", "Lockerbie", "Carlisle"]
     with(open("population_data/players.txt",'r') as f):
         players = []
         for line in f:
