@@ -11,7 +11,7 @@ from django.contrib.auth.models import User
 class TeamForm(forms.ModelForm):
     # team_name = forms.CharField()
     # location = forms.CharField()
-    # age_range = forms.IntegerField(widget=forms.NumberInput()) - FIX NUMBER INPUT - TWO NUM INPUTS MIN-MAX
+    # age_range = forms.IntegerField(widget=forms.NumberInput())
     age_min = forms.IntegerField(widget=forms.NumberInput(), min_value=13, max_value=50)
     age_max = forms.IntegerField(widget=forms.NumberInput(), min_value=13, max_value=50)
     # bio = forms.CharField(widget=forms.Textarea())
@@ -34,7 +34,18 @@ class TeamProfileForm(forms.ModelForm):
     pass
 
 class MatchRequestForm(forms.ModelForm):
-    pass
+    team_choices = ((team, str(team)) for team in Team.objects.all())
+    team2 = forms.ChoiceField(choices=team_choices)
+
+    date = forms.DateField()
+
+    locations = ["Glasgow", "Stirling", "Edinburgh", "Cumbernauld", "Alloa", "Falkirk", "Queensferry", "Livingston", "Perth", "Kirkcaldy", "St Andrews", "Cupar", "Glenrothes", "Dundee", "Lanark", "Douglas", "Selkirk", "Jedburgh", "Haddington", "Dunfermline", "Ayr", "Aberdeen", "Durham", "Lockerbie", "Carlisle"]
+    location_choices = ((location, location) for location in locations)
+    pitch = forms.ChoiceField(choices=location_choices)
+    class Meta:
+        model = Match
+        fields = ("team2", "date", "pitch") #should be within team 1's page, team1 gotten from there
+        exclude = ("winner", "loser", "status")
 
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
@@ -50,7 +61,10 @@ class PlayerForm(forms.ModelForm):
         exclude = ("registered_team","user")
 
 class LoginForm(forms.ModelForm):
-    pass
+    password = forms.CharField(widget=forms.PasswordInput())
+    class Meta:
+        model = User
+        fields = ("username", "email", "password",)
 
 class LogoutForm(forms.ModelForm):
     pass
