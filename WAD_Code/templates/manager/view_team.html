@@ -13,6 +13,16 @@
     
     {% if team %}
     <h2>{{ team.team_name }}</h2>
+    <img src="{{ team.logo }}" alt="{{ team.team_name }}'s logo">
+    <ul>
+        <li>Location: {{ team.location }}</li>
+        <li>Age Range: {{ team.age_range }}</li>
+        <li>Win Rate: {{ team.win_rate }}</li>
+        <li>{{ team.bio }}</li>
+    </ul>
+    <h2><a href="/manager/search_teams/{{ team.slug }}/match_request">Request a match</a></h2>
+    {% endif %}
+    <h1> <a href="{% url 'manager:index' %}">Back</a> to homepage</h1>
     
     
 {% endblock %}

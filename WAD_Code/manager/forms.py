@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 #     password = forms.CharField(widget=)
 
 class TeamForm(forms.ModelForm): # form to create a new team
-    # team_name = forms.CharField()
+    team_name = forms.CharField()
     team_password = forms.CharField(widget=forms.PasswordInput())
     # location = forms.CharField()
     # age_range = forms.IntegerField(widget=forms.NumberInput())
@@ -58,6 +58,11 @@ class UserForm(forms.Form): # form to create a new user - NOT MODEL FORM, DATA M
     age = forms.IntegerField(max_value=60, min_value=13)
     location = forms.CharField(max_length=64)
     bio = forms.Textarea()
+    def save(self, commit=True):
+        instance = super(UserForm, self).save(commit=False)
+        if commit:
+            instance.save()
+        return instance
 
 class PlayerForm(forms.ModelForm): # form to create a new player
     class Meta:
