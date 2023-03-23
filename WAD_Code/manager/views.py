@@ -56,8 +56,8 @@ def search_teams(request):
         else:
             print(team_form.errors)
     else:
-        team_form = TeamForm()
-    return render(request, 'manager/search_teams.html', context = {team_form})
+        search_form = SearchForm()
+    return render(request, 'manager/search_teams.html', context = {search_form})
 #should render a page with search box, wait for input and pass 
 #the search term to search_results
 
