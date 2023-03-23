@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 #     password = forms.CharField(widget=)
 
 class TeamForm(forms.ModelForm): # form to create a new team
-    # team_name = forms.CharField()
+    team_name = forms.CharField()
     team_password = forms.CharField(widget=forms.PasswordInput())
     # location = forms.CharField()
     # age_range = forms.IntegerField(widget=forms.NumberInput())

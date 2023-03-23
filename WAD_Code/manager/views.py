@@ -6,7 +6,7 @@ from django.urls import reverse
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required, permission_required
 from manager.decorators import user_teamless
-from manager.forms import TeamForm, TeamProfileForm
+from manager.forms import TeamForm, TeamProfileForm, MatchRequestForm, LoginForm, PlayerForm, UserForm
 
 # Create your views here.
 
@@ -41,7 +41,7 @@ def view_team(request, team_name):
     context_dict = {}
 
     try:
-        team = Team.objects.get(team_name)
+        team = Team.objects.get(slug=team_name)
         context_dict['team'] = team
     except Team.DoesNotExist:
         context_dict['team'] = None
@@ -89,6 +89,23 @@ def signup_team(request):
         team_form = TeamForm()
         # team_profile_form = TeamProfileForm()
     return render(request, 'manager/register_team.html', context={"team_form":team_form, "registered": registered})
+def signup_individual(request):
+    registered = False
+
+    if request.method == 'POST':
+        user_form = UserForm(request.POST)
+
+        if user_form.is_valid() and user_form.is_valid():
+            user = user_form.save()
+            registered = True
+            current_user = request.user
+        else:
+            print(user_form.errors)
+    else:
+        user_form = UserForm()
+    return render(request, 'manager/register_individual.html', context={"user_form":user_form, "registered":registered})
+
+
 
 #both individual players and teams can login the same way i assume
 #with just a username and password
@@ -131,13 +148,22 @@ def join_team_request():
 #@permission_required('manager.is_a_captain', raise_exception=True)
 @login_required
 def request_match(request):
-    # Defining the player linked to the request of the user
-    current_player = Player.objects.get(username=request.user.username)
-    # Defining the team, based on the team name listed in the player's data
-    team = Team.objects.get(team_name=current_player.registered_team)
-    
-    #As the player must be a captain to access this, they logically must be the captain of the team theyre listed under
-    pass
+    if request.method == 'POST':
+
+        # Defining the player linked to the request of the user
+        current_player = Player.objects.get(username=request.user.username)
+        match_request_form = MatchRequestForm(request.POST)
+        if match_request_form.is_valid() and match_request_form.is_valid():
+            pass
+        else:
+            print(match_request_form.errors)
+        # Defining the team, based on the team name listed in the player's data
+        team = Team.objects.get(team_name=current_player.registered_team)
+        
+        #As the player must be a captain to access this, they logically must be the captain of the team theyre listed under
+    else:
+        match_request_form = MatchRequestForm()
+    return render(request, 'manager/match_request.html', context={"match_request_form":match_request_form}) 
 
 @login_required
 def profile(request):
