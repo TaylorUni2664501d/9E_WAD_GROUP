@@ -80,5 +80,5 @@ class LogoutForm(forms.ModelForm):
     pass
 
 class SearchForm(forms.Form):
-    team_name = forms.CharField()
-    location_name = forms.CharField()
+    team_name = forms.CharField(required=False)
+    location_name = forms.CharField(required=False)
