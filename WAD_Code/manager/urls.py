@@ -9,6 +9,7 @@ urlpatterns = [
     path('leaderboard/', views.leaderboard, name='leaderboard'),
     #path('search_teams/', views.search_teams, name="search_teams"),
     path('search_teams/<slug:team_name>/', views.view_team, name="view_team"),
+    path('search_results/', views.search_results, name="search_results"),
     path('signup/team/', views.signup_team, name="signup_team"),
     path('signup/individual/', views.signup_individual, name='signup_individual'),
     path('login/', views.user_login, name='login'),
