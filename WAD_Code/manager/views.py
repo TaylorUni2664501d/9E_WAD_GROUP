@@ -50,13 +50,13 @@ def view_team(request, team_name):
 
 def search_teams(request):
     if request.method == 'POST':
-	    search_form = SearchForm(request.POST)
-	    if search_form.is_valid:
-		    search_results(request, team_form)
-		else
-		    print(team_form.errors)
-	else:
-	    team_form = TeamForm()
+        search_form = SearchForm(request.POST)
+        if search_form.is_valid:
+            search_results(request, team_form)
+        else:
+            print(team_form.errors)
+    else:
+        team_form = TeamForm()
     return render(request, 'manager/search_teams.html', context = {team_form})
 #should render a page with search box, wait for input and pass 
 #the search term to search_results
