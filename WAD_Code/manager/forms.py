@@ -73,3 +73,7 @@ class LoginForm(forms.ModelForm): # form to log in a user
 
 class LogoutForm(forms.ModelForm):
     pass
+
+class SearchForm(forms.Form):
+    team_name = forms.CharField()
+    location_name = forms.CharField()
