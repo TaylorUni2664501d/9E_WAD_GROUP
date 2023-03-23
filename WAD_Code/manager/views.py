@@ -48,16 +48,16 @@ def view_team(request, team_name):
 
     return render(request, 'manager/view_team.html', context=context_dict)
 
-def search_team(request):
+def search_teams(request):
     if request.method == 'POST':
         team_name = request.POST.get('team name')
     context_dict = {}
-    context_dict['teams'] = search_list
+    #context_dict['teams'] = search_list
     return render(request, 'manager/search_teams.html', context = context_dict)
 #should render a page with search box, wait for input and pass 
 #the search term to search_results
 
-def seach_results(request, search):
+def search_results(request, search):
     team_list = Team.objects.order_by('team_name')
     search_list = {}
     for team in team_list:
