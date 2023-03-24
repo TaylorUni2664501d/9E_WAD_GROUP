@@ -51,7 +51,6 @@ def view_team(request, team_name):
 def search_teams(request):
     if request.method == 'POST':
         search_form = SearchForm(request.POST)
-        print(search_form)
         if search_form.is_valid:
             return(search_results(request, search_form.cleaned_data['team_name']))
         else:
@@ -68,7 +67,8 @@ def search_results(request, search):
     team_list = Team.objects.order_by('team_name')
     search_list = []
     for team in team_list:
-        if (search in team.team_name):
+		#team_name = team.team_name
+        if (search.upper() in team.team_name.upper()):
             search_list.append(team)
     context_dict = {}
     context_dict['teams'] = search_list
