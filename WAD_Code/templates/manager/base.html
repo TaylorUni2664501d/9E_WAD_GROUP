@@ -12,20 +12,6 @@
 <!--bootstrap JS-->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
-<!--<div class="bottomButtons"> &lt;!&ndash; Leaving inline CSS as it oddly doesn't work in external file &ndash;&gt;-->
-<!--	<div class="bottomButton"><a href="/manager/faq/" style="color: black; text-decoration: none;">FAQ</a></div>-->
-<!--  <div class="bottomButton"><a href="/manager/contact/" style="color: black; text-decoration: none;">Contact Us</a></div>-->
-<!--</div>-->
-
-<!--<div class="topButtons"> &lt;!&ndash; Leaving inline CSS as it oddly doesn't work in external file &ndash;&gt;-->
-<!--	<div class="topButton"><a href="/manager/login/" style="color: black; text-decoration: none;">Login</a></div>-->
-<!--    <div class="topButton"><a href="/manager/signup/individual/" style="color: black; text-decoration: none;">Sign up Individual</a></div>-->
-<!--    <div class="topButton"><a href="/manager/signup/team/" style="color: black; text-decoration: none;">Sign up Team</a></div>-->
-<!--</div>-->
-
-<!--<div class="topbar"></div>-->
-<!--<div class="bottombar"></div>-->
-
 <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="{% url 'manager:index' %}">PickUp Football</a>
@@ -59,14 +45,10 @@
      </div>
 </div>
 
+
 <div class="container">
   <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
     <p class="col-md-4 mb-0 text-muted">&copy; 2023 PickUp Football Inc. all rights reserved</p>
-
-<!--    <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">-->
-<!--      <svg class="bi me-2" width="40" height="32"><img src="{% static 'images/ball.png' %}"></svg>-->
-<!--    </a>-->
-
     <ul class="nav col-md-4 justify-content-end">
       <li class="nav-item"><a href="{% url 'manager:faq' %}" class="nav-link px-2 text-muted">FAQs</a></li>
       <li class="nav-item"><a href="{% url 'manager:contact' %}" class="nav-link px-2 text-muted">Contact</a></li>

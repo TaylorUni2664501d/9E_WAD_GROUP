@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block body_block %}
-    <link rel="stylesheet" href="{% static 'css/index.css' %}" />-->
+    <link rel="stylesheet" href="{% static 'css/table_counter.css' %}" />-->
 
     <img src="{% static 'images/footballer2.jpg' %}" alt="footballer kicking a ball" />
     <br/>
@@ -24,7 +24,7 @@
         {% for team in teams %}
         <tr>
           <td></td>
-          <td> <a href="/manager/search_teams/{{ team.slug }}">{{ team.team_name }}</a></td>
+          <td> <a href="{% url 'manager:view_team' team.slug %}">{{ team.team_name }}</a></td>
           <td>{{ team.win_rate }}</td>
           incrementCount()
         </tr>

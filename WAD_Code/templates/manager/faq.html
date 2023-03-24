@@ -6,7 +6,6 @@
 {% endblock %} 
    
 {% block body_block %}
-<!--    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>-->
     <p>
         Q: WHAT CAN I DO IF I'M NOT IN A TEAM BUT WANT TO PLAY MATCHES? <br>
         ANS: our website allows you to search for teams that you would like to apply to join. Once the team have reviewed
@@ -30,5 +29,5 @@
 
     </p>
 
-    <li>Click <a href="{% url 'manager:index' %}">Here</a> to return to the homepage</li>
+     <a href="{% url 'manager:index' %}" class="btn btn-success">Back to home</a>
     {% endblock %}

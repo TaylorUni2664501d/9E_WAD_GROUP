@@ -60,12 +60,13 @@ class TeamRequestForm(forms.ModelForm):
     pass
 
 class UserForm(forms.Form): # form to create a new user - NOT MODEL FORM, DATA MUST BE PROCESSED IN VIEW
-    username = forms.CharField(max_length=64)
-    password = forms.CharField(widget=forms.PasswordInput())
-    email = forms.EmailField()
-    age = forms.IntegerField(max_value=60, min_value=13)
-    location = forms.CharField(max_length=64)
-    bio = forms.Textarea()
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), max_length=64)
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    age = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}), max_value=60, min_value=13)
+    location = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), max_length=64)
+    bio = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control'}))
+
 
 class PlayerForm(forms.ModelForm): # form to create a new player
     class Meta:
@@ -78,6 +79,7 @@ class LoginForm(forms.ModelForm): # form to log in a user
     class Meta:
         model = User
         fields = ("username", "password",)
+
 
 class LogoutForm(forms.ModelForm):
     pass
