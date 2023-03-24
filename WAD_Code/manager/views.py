@@ -7,7 +7,7 @@ from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required, permission_required
 from manager.decorators import user_teamless
 from manager.forms import TeamForm, TeamProfileForm, MatchRequestForm, LoginForm, PlayerForm, UserForm, SearchForm
-
+from django.contrib.auth.models import User
 # Create your views here.
 
 #POINTS:
@@ -118,14 +118,36 @@ def signup_team(request):
         team_form = TeamForm()
         # team_profile_form = TeamProfileForm()
     return render(request, 'manager/register_team.html', context={"team_form":team_form, "registered": registered})
+
+def add_player(user, age, location, bio):
+    default = Team.objects.get_or_create(team_name='FA')[0]
+    default.save()
+    p = Player.objects.get_or_create(user=user, registered_team = default)[0]
+    p.save()
+    p.age = age
+    p.location = location
+    p.bio = bio
+    p.save()
+
+    return p
+
 def signup_individual(request):
     registered = False
 
     if request.method == 'POST':
-        user_form = UserForm(request.POST)
-
-        if user_form.is_valid() and user_form.is_valid():
-            user = user_form.save()
+        user_form = UserForm(request.POST, request.FILES)
+        #player_form = PlayerForm(request.POST)
+        if user_form.is_valid():
+            
+            cd = user_form.cleaned_data
+            user = User.objects.create_user(
+                username=cd['username'],
+                email=cd['email'],
+                password=cd['password']
+            )
+            user.save()
+            player = add_player(user, user_form.cleaned_data['age'], user_form.cleaned_data['location'], user_form.cleaned_data['bio'])
+            player.save()
             registered = True
             current_user = request.user
         else:
@@ -133,7 +155,6 @@ def signup_individual(request):
     else:
         user_form = UserForm()
     return render(request, 'manager/register_individual.html', context={"user_form":user_form, "registered":registered})
-
 
 
 #both individual players and teams can login the same way i assume
@@ -149,7 +170,7 @@ def user_login(request):
             if user.is_active:
                 login(request, user)
                 #need to pass a slug of the username to this URL somehow
-                return redirect(reverse('manager: individual_account'))
+                return redirect(reverse('manager:index'))
             else:
                 return HttpResponse("Your Manager account is disabled.")
 
