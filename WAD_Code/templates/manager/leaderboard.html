@@ -5,8 +5,11 @@
     Leaderboard
 {% endblock %}
 
-{% block body_block %}
+{% block head_imports %}
     <link rel="stylesheet" href="{% static 'css/table_counter.css' %}" />
+{% endblock %}
+
+{% block body_block %}
     {% if teams %}
 <!--    <ol>-->
 <!--        {% for team in teams %}-->
@@ -24,7 +27,7 @@
     <tbody class="table-group-divider table-success">
         {% for team in teams %}
         <tr>
-          <td></td>
+          <td class="count"></td>
           <td> <a href="{% url 'manager:view_team' team.slug %}" class="link-success">{{ team.team_name }}</a></td>
           <td>{{ team.win_rate }}</td>
         </tr>

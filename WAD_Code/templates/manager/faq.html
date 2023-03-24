@@ -6,27 +6,56 @@
 {% endblock %} 
 <!-- PUT IN SOME TOGGLE CSS CODE HERE  -->
 {% block body_block %}
+
+
     <p>
-        Q: WHAT CAN I DO IF I'M NOT IN A TEAM BUT WANT TO PLAY MATCHES? <br>
-        ANS: our website allows you to search for teams that you would like to apply to join. Once the team have reviewed
-        your application, they may accept you onto the team and then you can start playing matches.
-        <br>
-        <br>
-        Q: HOW DO I MAKE SURE THAT I'M PLAYING AGAINST TEAMS OF THE CORRECT ABILITY? <br>
+      <button class="btn btn-dark" type="button" data-bs-toggle="collapse" data-bs-target="#team_ability" aria-expanded="false" aria-controls="collapseExample">
+         Q: HOW DO I MAKE SURE THAT I'M PLAYING AGAINST TEAMS OF THE CORRECT ABILITY?
+      </button>
+    </p>
+    <div class="collapse" id="team_ability">
+      <div class="card card-body">
         ANS: our leaderboard view allows you to see how all the registered teams are ranked. You can use this to figure out
         what teams match your ability and would make an exciting match.
-        <br>
-        <br>
-        Q: I'M CAPTAIN OF A TEAM AND I WANT TO JOIN THIS SITE, HOW DO I DO IT? <br>
-        ANS: you can create team account using the 'sign up team' button. As the captain, you will have control of this account,
-        and you will then be able to add your current players and accept new ones.
-        <br>
-        <br>
-        Q: HOW DO I ORGANISE A MATCH AGAINST ANOTHER TEAM? <br>
-        ANS: you can find teams to play against using the search function or by looking through the leaderboard. Once you've found a team,
-        you can use the 'request a match' button to send your request. Our website helps to get teams in touch and if the other team accepts the request,
-        then you can share details to organise the timings and location.
-
+      </div>
+    </div>
+    </br>
+    <p>
+      <button class="btn btn-dark" type="button" data-bs-toggle="collapse" data-bs-target="#captain_join" aria-expanded="false" aria-controls="collapseExample">
+          Q: I'M CAPTAIN OF A TEAM AND I WANT TO JOIN THIS SITE, HOW DO I DO IT?
+      </button>
     </p>
+    <div class="collapse" id="captain_join">
+      <div class="card card-body">
+          ANS: you can create a team account using the 'sign up team' button. As the captain, you will have control of this account,
+          and you will then be able to add your current players and accept new ones.
+      </div>
+    </div>
+    </br>
+    <p>
+      <button class="btn btn-dark" type="button" data-bs-toggle="collapse" data-bs-target="#organise_match" aria-expanded="false" aria-controls="collapseExample">
+        Q: HOW DO I ORGANISE A MATCH AGAINST ANOTHER TEAM?
+      </button>
+    </p>
+    <div class="collapse" id="organise_match">
+      <div class="card card-body">
+          ANS: you can find teams to play against using the search function or by looking through the leaderboard. Once you've found a team,
+          you can use the 'request a match' button to send your request. Our website helps teams to get in touch and if the other team accepts the request,
+          then you can share details to organise the timings and location.
+      </div>
+    </div>
+
+    </br>
+    <p>
+      <button class="btn btn-dark" type="button" data-bs-toggle="collapse" data-bs-target="#win_rate" aria-expanded="false" aria-controls="collapseExample">
+        Q: WHAT IS THE 'WIN RATE'?
+      </button>
+    </p>
+    <div class="collapse" id="win_rate">
+      <div class="card card-body">
+          ANS: whenever registered teams play a match, they can submit the team that won and the team that lost. The win rate is a score out of 5, computed as the
+          ratio of wins:losses for every team. The higher the win rate, the more matches that team has won.
+      </div>
+    </div>
 
     {% endblock %}
