@@ -10,8 +10,7 @@
 		<form id="search_form" method="post" action="{% url 'manager:search_results' %}"/>
 			{% csrf_token %}
 			{{ search_form.as_p }}
-			<input type="submit" class="btn btn-primary" name="submit" value="search" />
+			<input type="submit" class="btn btn-outline-primary" name="submit" value="search" />
 		</form>
 	</div>
-		<li>Click <a href="{% url 'manager:index' %}">Here</a> to return to the homepage</li>
 	{% endblock %} 

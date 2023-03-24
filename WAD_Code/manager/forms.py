@@ -16,8 +16,7 @@ class TeamForm(forms.ModelForm): # form to create a new team
     age_min = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}), min_value=13, max_value=50)
     age_max = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}), min_value=13, max_value=50)
     # bio = forms.CharField(widget=forms.Textarea())
-
-    # logo = forms.ImageField(required=False)
+    logo = forms.ImageField(widget=forms.FileInput(attrs={'class': 'form-control'}), required=False)
     
     def save(self, commit=True):
         instance = super(TeamForm, self).save(commit=False)
@@ -34,9 +33,7 @@ class TeamForm(forms.ModelForm): # form to create a new team
             "team_name": forms.TextInput(attrs={'class': 'form-control'}),
             "team_password": forms.PasswordInput(attrs={'class': 'form-control'}),
             "location": forms.TextInput(attrs={'class': 'form-control'}),
-            # "age_range": form.TextInput(attrs={'class': 'form-control'}),
             "bio": forms.Textarea(attrs={'class': 'form-control'}),
-            "logo": forms.FileInput(attrs={'class': 'form-control','required':False})
         }
 
 class TeamProfileForm(forms.ModelForm): # form to log in to a team as admin
@@ -85,5 +82,5 @@ class LogoutForm(forms.ModelForm):
     pass
 
 class SearchForm(forms.Form):
-    team_name = forms.CharField(required=False)
-    location_name = forms.CharField(required=False)
+    team_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), required=False)
+    location_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), required=False)

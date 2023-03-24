@@ -18,7 +18,7 @@
     <form id="user_form" method="post" action="{% url 'manager:signup_individual' %}" enctype="multipart/form-data">
         {% csrf_token %}
         {{ user_form.as_p }}
-        <input type="submit" class="btn btn-primary" name="submit" value="Register" />
+        <input type="submit" class="btn btn-outline-primary" name="submit" value="Register" />
     </form>
 </div>
 {% endif %}

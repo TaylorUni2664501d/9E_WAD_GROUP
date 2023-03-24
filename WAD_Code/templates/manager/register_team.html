@@ -16,7 +16,7 @@
         <form id="team_form" method="post" action="{% url 'manager:signup_team' %}" enctype="multipart/form-data">
             {% csrf_token %}
             {{ team_form.as_p }}
-            <input type="submit" class="btn btn-primary" name="submit" value="Register" />
+            <input type="submit" class="btn btn-outline-primary" name="submit" value="Register" />
         </form>
     </div>
     {% endif %}

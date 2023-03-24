@@ -11,13 +11,32 @@
 
 	{% block body_block %}
 		{% if teams %}
-		<ul>
+<!--		<ul>-->
+<!--			{% for team in teams %}-->
+<!--				<li><a href="{% url 'manager:view_team' team.slug %}">{{ team.team_name }}</a></li>-->
+<!--			{% endfor %}-->
+<!--		</ul>-->
+
+		<table class="table table-dark table-striped">
+			<thead>
+				<tr>
+					<th scope="col">Team Name</th>
+					<th scope="col">Team Location</th>
+				</tr>
+    		</thead>
+			<tbody class="table-group-divider table-secondary">
 			{% for team in teams %}
-				<li><a href="{% url 'manager:view_team' team.slug %}">{{ team.team_name }}</a></li>
+				<tr>
+				  <td> <a href="{% url 'manager:view_team' team.slug %}" class="link-success">{{ team.team_name }}</a></td>
+				  <td>{{ team.location }}</td>
+				</tr>
 			{% endfor %}
-		</ul>
+    		</tbody>
+		</table>
 		{% else %}
-		<strong>No teams matched the search.</strong>
+			<strong>No teams matched the search.</strong>
 		{% endif %}
-		<li>Click <a href="{% url 'manager:index' %}">Here</a> to return to the homepage</li>
+		</br>
+		<a href="{% url 'manager:search_teams' %}" class="btn btn-outline-success" >Back to search</a>
+<!--		<li>Click <a href="{% url 'manager:index' %}">Here</a> to return to the homepage</li>-->
 	{% endblock %}
