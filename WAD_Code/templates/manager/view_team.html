@@ -40,6 +40,13 @@
                 <a href="/manager/search_teams/{{ team.slug }}/match_request" class="btn bg-info text-dark btn-rounded btn-lg">
                     Request a match
                 </a>
+                {% if user.is_authenticated %}
+                <br/>
+                <form method="post" >
+                    {% csrf_token %}
+                    <button type="submit" class="btn bg-info text-dark btn-rounded btn-lg">Join Team</button>
+                </form>
+              {% endif %}
                 <div class="d-flex justify-content-between text-center mt-5 mb-2">
                   <div>
                     <p class="text-muted mb-0">Location</p>

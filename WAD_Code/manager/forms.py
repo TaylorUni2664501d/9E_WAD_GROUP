@@ -17,7 +17,7 @@ class TeamForm(forms.ModelForm): # form to create a new team
     age_max = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}), min_value=13, max_value=50)
     # bio = forms.CharField(widget=forms.Textarea())
 
-    # logo = forms.ImageField(required=False)
+    logo = forms.ImageField(required=False)
     
     def save(self, commit=True):
         instance = super(TeamForm, self).save(commit=False)
@@ -36,7 +36,7 @@ class TeamForm(forms.ModelForm): # form to create a new team
             "location": forms.TextInput(attrs={'class': 'form-control'}),
             # "age_range": form.TextInput(attrs={'class': 'form-control'}),
             "bio": forms.Textarea(attrs={'class': 'form-control'}),
-            "logo": forms.FileInput(attrs={'class': 'form-control','required':False})
+            # "logo": forms.FileInput(attrs={'class': 'form-control','required':False})
         }
 
 class TeamProfileForm(forms.ModelForm): # form to log in to a team as admin
@@ -56,8 +56,9 @@ class MatchRequestForm(forms.ModelForm): # form to create a new Match Request
         fields = ("team2", "date", "pitch") #should be within team 1's page, team1 gotten from there
         exclude = ("winner", "loser", "status")
 
-class TeamRequestForm(forms.ModelForm): 
-    pass
+class TeamRequestForm(forms.Form): 
+    name = forms.CharField(required=False)
+    
 
 class UserForm(forms.Form): # form to create a new user - NOT MODEL FORM, DATA MUST BE PROCESSED IN VIEW
     username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), max_length=64)

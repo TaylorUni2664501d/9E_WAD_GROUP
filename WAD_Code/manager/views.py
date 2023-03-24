@@ -6,7 +6,7 @@ from django.urls import reverse
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required, permission_required
 from manager.decorators import user_teamless
-from manager.forms import TeamForm, TeamProfileForm, MatchRequestForm, LoginForm, PlayerForm, UserForm, SearchForm
+from manager.forms import TeamForm, TeamProfileForm, MatchRequestForm, LoginForm, PlayerForm, UserForm, SearchForm, TeamRequestForm
 from django.contrib.auth.models import User
 # Create your views here.
 
@@ -45,13 +45,17 @@ def view_team(request, team_name):
         context_dict['team'] = team
     except Team.DoesNotExist:
         context_dict['team'] = None
-
+    if request.method == 'POST':
+        user = request.user.id
+        player = Player.objects.get(user_id=user)
+        player.registered_team = team
+        print("Changed team")
     return render(request, 'manager/view_team.html', context=context_dict)
 
 def search_teams(request):
     if request.method == 'POST':
         search_form = SearchForm(request.POST)
-        if search_form.is_valid:
+        if search_form.is_valid():
             return(search_results(request, search_form.cleaned_data['team_name']))
         else:
             print(team_form.errors)
@@ -227,6 +231,10 @@ def contact_us(request):
 
 
 # Custom decorator, checks if user in a team, please check manager/decorators.py for code
+
+
+
+
 
 @user_teamless
 @login_required
