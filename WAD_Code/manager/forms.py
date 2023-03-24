@@ -40,10 +40,10 @@ class TeamProfileForm(forms.ModelForm): # form to log in to a team as admin
     pass
 
 class MatchRequestForm(forms.ModelForm): # form to create a new Match Request
-    # team_choices = ((team, str(team)) for team in Team.objects.all())
-    # team2 = forms.ChoiceField(choices=team_choices)
+    team_choices = ((team, str(team)) for team in Team.objects.all())
+    team2 = forms.ChoiceField(choices=team_choices)
 
-    # date = forms.DateField(widget=)
+    date = forms.DateField()
 
     locations = ["Glasgow", "Stirling", "Edinburgh", "Cumbernauld", "Alloa", "Falkirk", "Queensferry", "Livingston", "Perth", "Kirkcaldy", "St Andrews", "Cupar", "Glenrothes", "Dundee", "Lanark", "Douglas", "Selkirk", "Jedburgh", "Haddington", "Dunfermline", "Ayr", "Aberdeen", "Durham", "Lockerbie", "Carlisle"]
     location_choices = ((location, location) for location in locations)
