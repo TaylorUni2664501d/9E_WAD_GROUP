@@ -6,25 +6,23 @@
     {% endblock %} 
    
 {% block body_block %}
-    
 
 
+    {% if registered %}
+    <strong>thank you for registering!</strong>
+    {% else %}
+    <strong>register here!</strong><br />
+    <div class="form-group">
+        <form id="team_form" method="post" action="{% url 'manager:signup_team' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ team_form.as_p }}
+            <input type="submit" class="btn btn-primary" name="submit" value="Register" />
+        </form>
+    </div>
+    {% endif %}
 
-{% if registered %}
-<strong>thank you for registering!</strong>
-{% else %}
-<strong>register here!</strong><br />
-<form id="team_form" method="post" action="{% url 'manager:signup_team' %}" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ team_form.as_p }}
-    <input type="submit" name="submit" value="Register" />
-</form>
-{% endif %}
-
-<li>Click <a href="{% url 'manager:index' %}">Here</a> to return to the homepage</li>
-
-
-
+    <br>
+    <h3> <a href="{% url 'manager:index' %}" class="btn btn-success">Back</a> to homepage</h3>
 
 
 {% endblock %}

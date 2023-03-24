@@ -6,22 +6,31 @@
 {% endblock %}
 
 {% block body_block %}
-    
-    <ul>
-        <li>Click <a href="/manager/search_teams/">Here</a> to search for teams to play against or join</li>
-        <li>Click <a href="/manager/leaderboard/">Here</a> to view the leaderboard</li>
-        <li>Click <a href="/manager/signup/team/">Here</a> to register a team</li>
-    </ul>
-    <img src="{% static 'images/test.jpg' %}" alt="A temporary logo for testing" />
+    <link rel="stylesheet" href="{% static 'css/index.css' %}" />-->
+
+    <img src="{% static 'images/footballer2.jpg' %}" alt="footballer kicking a ball" />
     <br/>
-    Manager app index page
     {% if teams %}
     <h2>Current top teams</h2>
-    <ol>
-       {% for team in teams %}
-        <li><a href="/manager/search_teams/{{ team.slug }}" style="color: black; text-decoration: none;"> {{ team.team_name }}</a> - {{ team.win_rate }}</li>
+    <table class="table table-hover">
+    <thead class ="table-primary">
+        <tr>
+            <th scope="col">Position</th>
+            <th scope="col">Team Name</th>
+            <th scope="col">Win rate</th>
+        </tr>
+    </thead>
+    <tbody class="table-group-divider table-success">
+        {% for team in teams %}
+        <tr>
+          <td></td>
+          <td> <a href="/manager/search_teams/{{ team.slug }}">{{ team.team_name }}</a></td>
+          <td>{{ team.win_rate }}</td>
+          incrementCount()
+        </tr>
         {% endfor %}
-        {% endif %} 
-    </ol>
-    
+    </tbody>
+    </table>
+    {% endif %}
+
 {% endblock %}

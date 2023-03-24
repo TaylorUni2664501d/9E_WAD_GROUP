@@ -9,15 +9,15 @@ from django.contrib.auth.models import User
 #     password = forms.CharField(widget=)
 
 class TeamForm(forms.ModelForm): # form to create a new team
-    team_name = forms.CharField()
-    team_password = forms.CharField(widget=forms.PasswordInput())
+    # team_name = forms.CharField()
+    # team_password = forms.CharField(widget=forms.PasswordInput)
     # location = forms.CharField()
     # age_range = forms.IntegerField(widget=forms.NumberInput())
-    age_min = forms.IntegerField(widget=forms.NumberInput(), min_value=13, max_value=50)
-    age_max = forms.IntegerField(widget=forms.NumberInput(), min_value=13, max_value=50)
+    age_min = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}), min_value=13, max_value=50)
+    age_max = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}), min_value=13, max_value=50)
     # bio = forms.CharField(widget=forms.Textarea())
 
-    logo = forms.ImageField(required=False)
+    # logo = forms.ImageField(required=False)
     
     def save(self, commit=True):
         instance = super(TeamForm, self).save(commit=False)
@@ -28,15 +28,23 @@ class TeamForm(forms.ModelForm): # form to create a new team
 
     class Meta:
         model = Team
-        fields = ("team_name","team_password", "location","age_range","bio")
+        fields = ("team_name","team_password", "location","bio","age_range","logo")
         exclude = ("win_rate","gallery","age_range","slug",)
+        widgets = {
+            "team_name": forms.TextInput(attrs={'class': 'form-control'}),
+            "team_password": forms.PasswordInput(attrs={'class': 'form-control'}),
+            "location": forms.TextInput(attrs={'class': 'form-control'}),
+            # "age_range": form.TextInput(attrs={'class': 'form-control'}),
+            "bio": forms.Textarea(attrs={'class': 'form-control'}),
+            "logo": forms.FileInput(attrs={'class': 'form-control','required':False})
+        }
 
 class TeamProfileForm(forms.ModelForm): # form to log in to a team as admin
     pass
 
 class MatchRequestForm(forms.ModelForm): # form to create a new Match Request
-    team_choices = ((team, str(team)) for team in Team.objects.all())
-    team2 = forms.ChoiceField(choices=team_choices)
+    # team_choices = ((team, str(team)) for team in Team.objects.all())
+    # team2 = forms.ChoiceField(choices=team_choices)
 
     date = forms.DateField()
 
