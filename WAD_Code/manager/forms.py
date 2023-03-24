@@ -53,8 +53,8 @@ class MatchRequestForm(forms.ModelForm): # form to create a new Match Request
         fields = ("team2", "date", "pitch") #should be within team 1's page, team1 gotten from there
         exclude = ("winner", "loser", "status")
 
-class TeamRequestForm(forms.ModelForm): 
-    pass
+class TeamRequestForm(forms.Form):
+    name = forms.CharField(required=False)
 
 class UserForm(forms.Form): # form to create a new user - NOT MODEL FORM, DATA MUST BE PROCESSED IN VIEW
     username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), max_length=64)
