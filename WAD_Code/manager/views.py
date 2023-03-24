@@ -55,7 +55,7 @@ def view_team(request, team_name):
 def search_teams(request):
     if request.method == 'POST':
         search_form = SearchForm(request.POST)
-        if search_form.is_valid()():
+        if search_form.is_valid():
             return(search_results(request, search_form.cleaned_data['team_name'], search_form.cleaned_data['location_name']))
         else:
             print(search_form.errors)
