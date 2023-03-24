@@ -25,7 +25,7 @@ Web App Development Year 2 Group lab, group 9E
 - Searching
 
 ## TODO Urgent:
-- Search teams link and functionality
+- Search teams link and functionality DONE
 - 3 top buttons
     - login
     - sign up individual
