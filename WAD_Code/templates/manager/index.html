@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    PickUp Football
+    Home
 {% endblock %}
 
 {% block body_block %}
@@ -24,7 +24,7 @@
         {% for team in teams %}
         <tr>
           <td></td>
-          <td> <a href="{% url 'manager:view_team' team.slug %}">{{ team.team_name }}</a></td>
+          <td> <a href="{% url 'manager:view_team' team.slug %}" class="link-success">{{ team.team_name }}</a></td>
           <td>{{ team.win_rate }}</td>
           incrementCount()
         </tr>

@@ -2,59 +2,67 @@
     {% load staticfiles %}
 <html>
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- CSS -->
-<!--  <link rel="stylesheet" href="{% static 'css/base.css' %}" />-->
-<!--  bootstrap CSS-->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}" />
+    <!--  bootstrap CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <title>
+        Pickup -
+        {% block title_block %}
+        {% endblock %}
+    </title>
+
 </head>
 <body>
 <!--bootstrap JS-->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
-<nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="{% url 'manager:index' %}">PickUp Football</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link" href="{% url 'manager:search_teams' %}">Search for teams</a>
-        <a class="nav-link" href="{% url 'manager:leaderboard' %}">Leaderboard</a>
-        <a class="nav-link" href="{% url 'manager:login' %}">Login</a>
-        <a class="nav-link" href="{% url 'manager:signup_individual' %}">Sign up Individual</a>
-        <a class="nav-link" href="{% url 'manager:signup_team' %}">Sign up Team</a>
+<!--    NAVBAR CODE-->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'manager:index' %}">PickUp Football</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav me-auto">
+            <a class="nav-link" href="{% url 'manager:search_teams' %}">Search for teams</a>
+            <a class="nav-link" href="{% url 'manager:leaderboard' %}">Leaderboard</a>
+          </div>
+          <div class="navbar-nav ms-auto">
+            <a class="nav-link" href="{% url 'manager:login' %}">Login</a>
+            <a class="nav-link" href="{% url 'manager:signup_individual' %}">Sign up Individual</a>
+            <a class="nav-link" href="{% url 'manager:signup_team' %}">Sign up Team</a>
+          </div>
+        </div>
       </div>
+    </nav>
+
+    <div class="main">
+        <br>
+        <div class="container">
+        {% block body_block %}
+        {% endblock %}
+         </div>
     </div>
-  </div>
-</nav>
 
-<div class="title">
-    <br>
-    {% block title_block %}
-    <title> PickUp - {block title_block %}</title>
-    {% endblock %}
-</div>
-
-<div class="main">
-    <br>
+<!--FOOTER CODE-->
     <div class="container">
-    {% block body_block %}
-    {% endblock %}
-     </div>
-</div>
+      <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <p class="col-md-4 mb-0 text-muted">&copy; 2023 PickUp Football Inc. all rights reserved</p>
+        <ul class="nav col-md-4 justify-content-end">
+          <li class="nav-item"><a href="{% url 'manager:faq' %}" class="nav-link px-2 text-muted">FAQs</a></li>
+          <li class="nav-item"><a href="{% url 'manager:contact' %}" class="nav-link px-2 text-muted">Contact</a></li>
+        </ul>
+      </footer>
+    </div>
 
-
-<div class="container">
-  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-    <p class="col-md-4 mb-0 text-muted">&copy; 2023 PickUp Football Inc. all rights reserved</p>
-    <ul class="nav col-md-4 justify-content-end">
-      <li class="nav-item"><a href="{% url 'manager:faq' %}" class="nav-link px-2 text-muted">FAQs</a></li>
-      <li class="nav-item"><a href="{% url 'manager:contact' %}" class="nav-link px-2 text-muted">Contact</a></li>
-    </ul>
-  </footer>
-</div>
+<!--    <div class="backButton">-->
+<!--        {% block back_home %}-->
+<!--            <a href="{% url 'manager:index' %}" class="btn btn-success">Back to home</a>-->
+<!--        {% endblock %}-->
+<!--    </div>-->
 
 </body>
 </html>

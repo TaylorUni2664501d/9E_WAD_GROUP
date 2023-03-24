@@ -6,13 +6,13 @@
 {% endblock %}
 
 {% block body_block %}
-    
 
-    <img src="{% static 'images/test.jpg' %}" alt="A temporary logo for testing" />
     <br/>
     
     {% if team %}
-    <h2>{{ team.team_name }}</h2>
+    <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+       <h2>{{ team.team_name }} I'm going to make this look cool with a CSS template</h2>
+    </div>
     <img src="{{ team.logo }}" alt="{{ team.team_name }}'s logo">
     <ul>
         <li>Location: {{ team.location }}</li>
