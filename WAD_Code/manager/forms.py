@@ -86,4 +86,4 @@ class LogoutForm(forms.ModelForm):
 
 class SearchForm(forms.Form):
     team_name = forms.CharField(required=False)
-    #location_name = forms.CharField(required=False)
+    location_name = forms.CharField(required=False)

@@ -52,7 +52,7 @@ def search_teams(request):
     if request.method == 'POST':
         search_form = SearchForm(request.POST)
         if search_form.is_valid():
-            return(search_results(request, search_form.cleaned_data['team_name']))
+            return(search_results(request, search_form.cleaned_data['team_name'], search_form.cleaned_data['location_name']))
         else:
             print(team_form.errors)
     else:
@@ -63,15 +63,15 @@ def search_teams(request):
 #should render a page with search box, wait for input and pass 
 #the search term to search_results
 
-def search_results(request, search):
+def search_results(request, team_search, area_search):
     team_list = Team.objects.order_by('team_name')
     search_list = []
     for team in team_list:
-        if (search.upper() in team.team_name.upper()):
+        if (team_search.upper() in team.team_name.upper() and (area_search.upper() in team.team_name.upper())):
             search_list.append(team)
     context_dict = {}
     context_dict['teams'] = search_list
-    context_dict['search'] = search
+    context_dict['search'] = team_search + ' ' + area_search
     return render(request, 'manager/search_results.html', context = context_dict)
 #recieves a search term from search_team and provides a
 #list of teams that match that term
