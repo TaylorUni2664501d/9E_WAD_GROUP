@@ -49,6 +49,7 @@ def view_team(request, team_name):
         user = request.user.id
         player = Player.objects.get(user_id=user)
         player.registered_team = team
+        player.save()
         print("Changed team")
     return render(request, 'manager/view_team.html', context=context_dict)
 
@@ -200,13 +201,13 @@ def join_team_request():
 # To be noted, while is_a_captain is under team, seemingly most documentations on this use the name of the folder the models are in instead
 #@permission_required('manager.is_a_captain', raise_exception=True)
 @login_required
-def request_match(request):
+def request_match(request, team_name):
     if request.method == 'POST':
 
         # Defining the player linked to the request of the user
         current_player = Player.objects.get(username=request.user.username)
         match_request_form = MatchRequestForm(request.POST)
-        if match_request_form.is_valid() and match_request_form.is_valid():
+        if match_request_form.is_valid():
             pass
         else:
             print(match_request_form.errors)
