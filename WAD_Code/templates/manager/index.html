@@ -5,13 +5,16 @@
     Home
 {% endblock %}
 
-{% block body_block %}
-    <link rel="stylesheet" href="{% static 'css/table_counter.css' %}" />-->
 
+{% block body_block %}
+    <link rel="stylesheet" href="{% static 'css/table_counter.css' %}" />
     <img src="{% static 'images/footballer2.jpg' %}" alt="footballer kicking a ball" />
     <br/>
+    <br />
     {% if teams %}
-    <h2>Current top teams</h2>
+    <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+        <h2>Current top teams</h2>
+    </div>
     <table class="table table-hover">
     <thead class ="table-primary">
         <tr>
@@ -26,7 +29,6 @@
           <td></td>
           <td> <a href="{% url 'manager:view_team' team.slug %}" class="link-success">{{ team.team_name }}</a></td>
           <td>{{ team.win_rate }}</td>
-          incrementCount()
         </tr>
         {% endfor %}
     </tbody>

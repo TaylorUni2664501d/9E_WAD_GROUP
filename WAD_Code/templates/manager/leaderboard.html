@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block body_block %}
-    <link rel="stylesheet" href="{% static 'css/table_counter.css' %}" />-->
+    <link rel="stylesheet" href="{% static 'css/table_counter.css' %}" />
     {% if teams %}
 <!--    <ol>-->
 <!--        {% for team in teams %}-->
@@ -27,13 +27,10 @@
           <td></td>
           <td> <a href="{% url 'manager:view_team' team.slug %}" class="link-success">{{ team.team_name }}</a></td>
           <td>{{ team.win_rate }}</td>
-          incrementCount()
         </tr>
         {% endfor %}
     </tbody>
     </table>
     {% endif %}
-
-     <a href="{% url 'manager:index' %}" class="btn btn-success">Back to home</a>
     
 {% endblock %}

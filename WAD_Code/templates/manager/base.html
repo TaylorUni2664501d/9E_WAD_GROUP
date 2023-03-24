@@ -13,6 +13,8 @@
         {% endblock %}
     </title>
 
+    {% block head_imports %}
+    {% endblock %}
 </head>
 <body>
 <!--bootstrap JS-->
@@ -57,12 +59,6 @@
         </ul>
       </footer>
     </div>
-
-<!--    <div class="backButton">-->
-<!--        {% block back_home %}-->
-<!--            <a href="{% url 'manager:index' %}" class="btn btn-success">Back to home</a>-->
-<!--        {% endblock %}-->
-<!--    </div>-->
 
 </body>
 </html>
