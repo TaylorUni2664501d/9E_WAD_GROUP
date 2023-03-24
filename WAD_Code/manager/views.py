@@ -6,7 +6,7 @@ from django.urls import reverse
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required, permission_required
 from manager.decorators import user_teamless
-from manager.forms import TeamForm, TeamProfileForm, MatchRequestForm, LoginForm, PlayerForm, UserForm
+from manager.forms import TeamForm, TeamProfileForm, MatchRequestForm, LoginForm, PlayerForm, UserForm, SearchForm
 
 # Create your views here.
 
@@ -51,19 +51,22 @@ def view_team(request, team_name):
 def search_teams(request):
     if request.method == 'POST':
         search_form = SearchForm(request.POST)
+        print(search_form)
         if search_form.is_valid:
-            search_results(request, team_form)
+            return(search_results(request, search_form.cleaned_data['team_name']))
         else:
             print(team_form.errors)
     else:
         search_form = SearchForm()
-    return render(request, 'manager/search_teams.html', context = {search_form})
+    context_dict = {}
+    context_dict['search_form'] = search_form
+    return render(request, 'manager/search_teams.html', context = context_dict)
 #should render a page with search box, wait for input and pass 
 #the search term to search_results
 
 def search_results(request, search):
     team_list = Team.objects.order_by('team_name')
-    search_list = {}
+    search_list = []
     for team in team_list:
         if (search in team.team_name):
             search_list.append(team)

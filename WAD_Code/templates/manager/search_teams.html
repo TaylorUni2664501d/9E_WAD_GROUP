@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 {% extends 'manager/base.html' %}
-{% load staticfiles %}
-	{% block title_block %}
-		Search for a team
-	{% endblock %}
+{% load static %}
+{% block title_block %}
+	Search for a team
+{% endblock %}
 
-	{% block body_block %}
-		<input type="text" placeholder="Search..">g
+{% block body_block %}
+	<div class="form-group">
+		<form id="search_form" method="post" action="{% url 'manager:search_results' %}"/>
+			{% csrf_token %}
+			{{ search_form.as_p }}
+			<input type="submit" class="btn btn-primary" name="submit" value="search" />
+		</form>
+	</div>
 		<li>Click <a href="{% url 'manager:index' %}">Here</a> to return to the homepage</li>
-	{% endblock %}
+	{% endblock %} 
